@@ -1,9 +1,15 @@
 <template>
   <div>
-    <div>
-      <router-link to="/">Lista</router-link>|
-      <router-link to="/cadastro">Cadastro</router-link>
-    </div>
+    <Menu></Menu>
     <router-view />
   </div>
 </template>
+
+<script>
+import Menu from "./components/Menu"
+export default {
+  components: {
+    Menu
+  }
+}
+</script>
