@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Menu></Menu>
+    <Menu :menus="menus"></Menu>
     <main>
       <router-view />
     </main>
@@ -15,6 +15,14 @@ export default {
   components: {
     Menu,
     Footer
+  },
+  data() {
+    return {
+      menus: [
+        { texto: "Lista", rota: "/" },
+        { texto: "Cadastro", rota: "/cadastro" }
+      ]
+    }
   }
 }
 </script>
