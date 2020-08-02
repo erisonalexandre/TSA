@@ -36,9 +36,14 @@ body {
 }
 
 .container {
-  width: 100%;
+  width: 96%;
   margin-right: auto;
   margin-left: auto;
+}
+
+.py-40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 @media (min-width: 576px) {
