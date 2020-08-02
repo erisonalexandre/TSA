@@ -47,7 +47,7 @@
           <option value="" selected disabled>Selecione a Cidade</option>
         </select>
       </BaseInput>
-      <p>Forma de Pagamento</p>
+      <p class="color-azul mt-35"><strong>Forma de Pagamento</strong></p>
       <hr />
       <BaseInput>
         <input type="radio" id="credito" name="pagamento" value="credito" />
@@ -85,9 +85,11 @@
         placeholder="XXX"
       ></BaseInput>
       <hr />
-      <p>Seu cartão será debitado em R$ 49,00</p>
-      <button type="submit">REALIZAR MATRICULA</button>
-      <small>Informações seguras e criptografadas</small>
+      <p class="color-cinza">Seu cartão será debitado em R$ 49,00</p>
+      <button class="btn" type="submit">REALIZAR MATRÍCULA</button>
+      <p class="color-cinza">
+        <small>Informações seguras e criptografadas</small>
+      </p>
     </form>
   </div>
 </template>
