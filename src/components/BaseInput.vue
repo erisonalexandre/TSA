@@ -10,6 +10,7 @@
         :value="value"
         @input="$emit('input', $event.target.value)"
         :id="id"
+        v-bind="{ ...$attrs }"
       />
     </slot>
   </div>
