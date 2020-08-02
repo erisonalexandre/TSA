@@ -117,4 +117,42 @@ export default {
     }
   }
 }
+
+@media (min-width: 992px) {
+  .c-menu {
+    &__abrir {
+      display: none;
+    }
+    &__links {
+      display: block;
+      position: relative;
+      margin: 0;
+      width: 100%;
+      border-radius: 0;
+      text-align: right;
+      background-color: #17222d;
+      height: 55px;
+      padding: 8px;
+      line-height: 38px;
+      ul {
+        li {
+          display: inline-block;
+          margin: 0 20px;
+          font-weight: bold;
+          min-width: 80px;
+        }
+        li.router-link-exact-active::before {
+          content: "o";
+          color: white;
+        }
+      }
+      .c-menu__fechar {
+        display: none;
+      }
+      hr {
+        display: none;
+      }
+    }
+  }
+}
 </style>
