@@ -46,6 +46,7 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "@/assets/scss/_variaveis";
 .c-baseInput {
   label {
     display: inline-block;
@@ -106,9 +107,10 @@ export default {
         position: absolute;
         left: 0;
         top: 3px;
-        width: 16px;
+        width: 17px;
         height: 16px;
-        background: #d5dbe0;
+        border: 1px solid $azul;
+        background: #fff;
         -webkit-border-radius: 16px;
         border-radius: 16px;
       }
@@ -118,9 +120,9 @@ export default {
         content: "";
         position: absolute;
         top: 8px;
-        left: 5px;
-        width: 6px;
-        height: 6px;
+        left: 6px;
+        width: 7px;
+        height: 7px;
         background: #fff;
         -webkit-border-radius: 6px;
         border-radius: 6px;
