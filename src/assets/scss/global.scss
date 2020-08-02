@@ -19,7 +19,6 @@ body {
   overflow-x: hidden;
 }
 
-p,
 a,
 ul,
 li,
@@ -29,6 +28,10 @@ input,
 footer {
   font-family: $font-nunito;
   @include resetMarginPaddign;
+}
+
+p {
+  font-family: $font-nunito;
 }
 
 body {
@@ -44,6 +47,42 @@ body {
 .py-40 {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+
+.mt-35 {
+  margin-top: 35px;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: $azul;
+  color: white;
+  width: 50%;
+  height: 40px;
+  font-family: $font-roboto;
+  font-size: 17px;
+  font-weight: 500;
+  &:hover {
+    opacity: 80%;
+  }
+}
+
+hr {
+  height: 2.5px;
+  background-color: #eff4f9;
+  border: none;
+  margin-block-start: 1.5em;
+  margin-block-end: 1.5em;
+}
+
+.color-azul {
+  color: $azul;
+}
+
+.color-cinza {
+  color: $cinza;
 }
 
 @media (min-width: 576px) {
