@@ -11,6 +11,7 @@
         @input="$emit('input', $event.target.value)"
         :id="id"
         v-bind="{ ...$attrs }"
+        v-on="metodosInput"
       />
     </slot>
   </div>
@@ -33,6 +34,13 @@ export default {
     },
     value: {
       type: String
+    }
+  },
+  computed: {
+    metodosInput() {
+      const copia = { ...this._events }
+      delete copia.input
+      return copia
     }
   }
 }
