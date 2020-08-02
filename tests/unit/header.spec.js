@@ -18,6 +18,6 @@ describe("Testando Header", () => {
   })
 
   it("Testando conteudo", () => {
-    expect(header.html()).toContain("<h1>Cadastro</h1>")
+    expect(header.find("h1").text()).toBe("Cadastro")
   })
 })
