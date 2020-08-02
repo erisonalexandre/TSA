@@ -131,10 +131,11 @@ export default {
       border-radius: 0;
       text-align: right;
       background-color: #17222d;
-      height: 55px;
+      height: 49px;
       padding: 8px;
       line-height: 38px;
       ul {
+        padding: 0 50px;
         li {
           display: inline-block;
           margin: 0 20px;
@@ -144,6 +145,7 @@ export default {
         li.router-link-exact-active::before {
           content: "o";
           color: white;
+          margin-right: 10px;
         }
       }
       .c-menu__fechar {
