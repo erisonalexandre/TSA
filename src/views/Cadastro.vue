@@ -49,12 +49,12 @@
       </BaseInput>
       <p>Forma de Pagamento</p>
       <hr />
-      <div>
+      <BaseInput>
         <input type="radio" id="credito" name="pagamento" value="credito" />
         <label for="credito">Cartão de Crédito</label>
         <input type="radio" id="boleto" name="pagamento" value="boleto" />
         <label for="boleto">Boleto Bancário</label>
-      </div>
+      </BaseInput>
       <BaseInput
         v-model="nome_cartao"
         id="nome_cartao"
