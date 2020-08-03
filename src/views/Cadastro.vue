@@ -14,12 +14,14 @@
       <BaseInput v-model="nome" id="nome" name="nome" label="Nome"></BaseInput>
       <BaseInput
         v-model="email"
+        type="email"
         id="email"
         name="email"
         label="Email"
       ></BaseInput>
       <BaseInput
         v-model="cpf"
+        v-mascara="'###.###.###-##'"
         id="cpf"
         name="cpf"
         label="CPF"
@@ -51,6 +53,7 @@
       </BaseInput>
       <BaseInput
         v-model="cep"
+        v-mascara="'##.###-##'"
         id="cep"
         name="cep"
         label="CEP"
@@ -100,6 +103,7 @@
       ></BaseInput>
       <BaseInput
         v-model="numero_cartao"
+        v-mascara="'#### #### #### ####'"
         id="numero_cartao"
         name="numero_cartao"
         label="Número no Cartão"
@@ -121,6 +125,7 @@
       </BaseInput>
       <BaseInput
         v-model="cv"
+        v-mascara="'###'"
         id="cv"
         name="cv"
         label="Código de Segurança"
