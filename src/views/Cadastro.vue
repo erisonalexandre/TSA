@@ -1,7 +1,11 @@
 <template>
   <div>
     <Header titulo="Cadastro"></Header>
-    <form class="container py-40" id="form" @submit.prevent="submitForm">
+    <form
+      class="container py-40"
+      id="formCadastro"
+      @submit.prevent="submitForm"
+    >
       <div v-if="erros.length" class="c-erros">
         <p>Os campos abaixos são obrigatorios</p>
         <ul>
@@ -218,7 +222,7 @@ export default {
       return !this.erros.length
     },
     submitForm() {
-      let form = document.getElementById("form")
+      let form = document.getElementById("formCadastro")
       form.reportValidity()
       if (this.checkForm()) {
         let dados = { ...this._data }
@@ -296,6 +300,11 @@ export default {
 
 <style lang="scss">
 @import "@/assets/scss/_variaveis";
+#formCadastro {
+  .btn {
+    width: 100%;
+  }
+}
 .c-erros {
   border-radius: 5px;
   background-color: #ff5555;
@@ -322,5 +331,12 @@ export default {
 }
 .hr {
   margin-block-start: 0.5em;
+}
+@media (min-width: 576px) {
+  #formCadastro {
+    .btn {
+      width: 50%;
+    }
+  }
 }
 </style>
