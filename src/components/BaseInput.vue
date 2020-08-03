@@ -46,15 +46,16 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "@/assets/scss/_variaveis";
 .c-baseInput {
   label {
     display: inline-block;
-    color: #445566;
+    color: $cinza;
     font-weight: bold;
     margin-bottom: 5px;
   }
 
-  input,
+  input:not([type="checkbox"]):not([type="radio"]),
   select {
     display: block;
     width: 100%;
@@ -88,6 +89,49 @@ export default {
     background-repeat: no-repeat;
     background-position-x: 97%;
     background-position-y: 50%;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: none;
+  }
+  input[type="checkbox"],
+  input[type="radio"] {
+    & + label {
+      position: relative;
+      padding-left: 24px;
+      margin-left: 11px;
+      cursor: pointer;
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 16px;
+        height: 16px;
+        border: 1px solid $azul;
+        background: #fff;
+        -webkit-border-radius: 16px;
+        border-radius: 16px;
+      }
+    }
+    &:checked + label {
+      &::after {
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 6px;
+        width: 7px;
+        height: 7px;
+        background: #fff;
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+      }
+      &::before {
+        background: #348fe2;
+        border-color: #348fe2;
+      }
+    }
   }
 }
 </style>

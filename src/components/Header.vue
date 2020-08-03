@@ -22,7 +22,7 @@ export default {
   background-color: #eff4f9;
   height: 116.5px;
   &__titulo {
-    color: #445566;
+    color: $cinza;
     margin: 0;
     line-height: 116px;
     font-size: 71px;
