@@ -50,7 +50,7 @@ export default {
 .c-baseInput {
   label {
     display: inline-block;
-    color: #445566;
+    color: $cinza;
     font-weight: bold;
     margin-bottom: 5px;
   }
