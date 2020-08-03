@@ -206,9 +206,52 @@ export default {
           this.erros.push(item)
         }
       })
+      return !this.erros.length
     },
     submitForm() {
-      this.checkForm()
+      if (this.checkForm()) {
+        let dados = { ...this._data }
+        delete dados.anos
+        delete dados.meses
+        delete dados.erros
+        delete dados.sucesso
+        delete dados.camposObrigatorios
+        delete dados.estados
+        delete dados.cidades
+        this.sucesso = true
+
+        this.salvarDadosLocalStorage(dados)
+        this.resetForm()
+      }
+      this.scrollTop()
+    },
+    resetForm() {
+      this._data = {
+        ...this._data,
+        nome: null,
+        email: null,
+        cpf: null,
+        endereco: null,
+        estado: "",
+        cep: null,
+        cidade: "",
+        pagamento: null,
+        nome_cartao: null,
+        numero_cartao: null,
+        mes_cartao: "",
+        ano_cartao: "",
+        cv: null
+      }
+    },
+    salvarDadosLocalStorage(dados) {
+      let lista = []
+      lista = JSON.parse(localStorage.getItem("lista")) || []
+      lista.push(dados)
+      localStorage.setItem("lista", JSON.stringify(lista))
+    },
+    scrollTop() {
+      document.body.scrollTop = 150
+      document.documentElement.scrollTop = 150
     },
     pesquisarEstados() {
       var headers = { method: "GET", mode: "cors" }
