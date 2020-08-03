@@ -22,6 +22,7 @@
       <BaseInput
         v-model="cpf"
         v-mascara="'###.###.###-##'"
+        pattern=".{14,}"
         id="cpf"
         name="cpf"
         label="CPF"
@@ -53,7 +54,8 @@
       </BaseInput>
       <BaseInput
         v-model="cep"
-        v-mascara="'##.###-##'"
+        v-mascara="'##.###-###'"
+        pattern=".{10,}"
         id="cep"
         name="cep"
         label="CEP"
@@ -104,6 +106,7 @@
       <BaseInput
         v-model="numero_cartao"
         v-mascara="'#### #### #### ####'"
+        pattern=".{19,}"
         id="numero_cartao"
         name="numero_cartao"
         label="Número no Cartão"
@@ -126,6 +129,7 @@
       <BaseInput
         v-model="cv"
         v-mascara="'###'"
+        pattern=".{3,}"
         id="cv"
         name="cv"
         label="Código de Segurança"
@@ -214,6 +218,8 @@ export default {
       return !this.erros.length
     },
     submitForm() {
+      let form = document.getElementById("form")
+      form.reportValidity()
       if (this.checkForm()) {
         let dados = { ...this._data }
         dados.data_criacao = new Date().toISOString().substring(0, 10)
