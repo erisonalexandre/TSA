@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header titulo="Cadastro"></Header>
-    <form class="container py-40">
+    <form class="container py-40" @submit.prevent="submitForm">
       <BaseInput v-model="nome" id="nome" name="nome" label="Nome"></BaseInput>
       <BaseInput
         v-model="email"
@@ -24,8 +24,20 @@
         placeholder="Rua, Número e Bairro"
       ></BaseInput>
       <BaseInput name="estado" label="Estado">
-        <select v-model="estado" required name="estado" id="estado">
+        <select
+          v-model="estado"
+          name="estado"
+          id="estado"
+          @change="pesquisarCidades"
+        >
           <option value="" disabled selected>Selecione o Estado</option>
+          <option
+            v-for="estado in estados"
+            :value="estado.sigla"
+            :key="'estado-' + estado.sigla"
+          >
+            {{ estado.nome }}
+          </option>
         </select>
       </BaseInput>
       <BaseInput
@@ -43,8 +55,18 @@
         placeholder="22.222-000"
       ></BaseInput>
       <BaseInput name="cidade" label="Cidade">
-        <select v-model="cidade" required name="cidade" id="cidade">
+        <select
+          v-model="cidade"
+          :disabled="!cidades.length"
+          name="cidade"
+          id="cidade"
+        >
           <option value="" selected disabled>Selecione a Cidade</option>
+          <template v-for="cidade in cidades">
+            <option :value="cidade.nome" :key="'cidade-' + cidade.id">
+              {{ cidade.nome }}
+            </option>
+          </template>
         </select>
       </BaseInput>
       <p class="color-azul mt-35"><strong>Forma de Pagamento</strong></p>
@@ -70,11 +92,17 @@
         placeholder="5555 5555 5555 5555"
       ></BaseInput>
       <BaseInput label="Data de Expiração">
-        <select v-model="mes_cartao" required name="mes_cartao" id="mes_cartao">
+        <select v-model="mes_cartao" name="mes_cartao" id="mes_cartao">
           <option value="" selected disabled>Mês</option>
+          <option v-for="mes in meses" :value="mes" :key="'mes-' + mes">
+            {{ mes }}
+          </option>
         </select>
-        <select v-model="ano_cartao" required name="ano_cartao" id="ano_cartao">
+        <select v-model="ano_cartao" name="ano_cartao" id="ano_cartao">
           <option value="" selected disabled>Ano</option>
+          <option v-for="ano in anos" :value="ano" :key="'ano-' + ano">
+            {{ ano }}
+          </option>
         </select>
       </BaseInput>
       <BaseInput
@@ -117,8 +145,81 @@ export default {
       numero_cartao: null,
       mes_cartao: "",
       ano_cartao: "",
-      cv: null
+      cv: null,
+      erros: [],
+      estados: [],
+      cidades: [],
+      camposObrigatorios: {
+        nome: "Nome",
+        email: "Email",
+        cpf: "CPF",
+        endereco: "Endereço",
+        estado: "Estado",
+        cep: "CEP",
+        cidade: "cidade",
+        pagamento: "Meio de pagamento",
+        nome_cartao: "Nome impresso no cartão",
+        numero_cartao: "Numero impresso no cartão",
+        mes_cartao: "Mes da validade do cartão",
+        ano_cartao: "Ano da validade do cartão",
+        cv: "Código de Segurança"
+      }
     }
+  },
+  computed: {
+    meses() {
+      let meses = []
+      for (let i = 1; i <= 12; i++) {
+        meses.push(i)
+      }
+      return meses
+    },
+    anos() {
+      let anos = [],
+        ano = new Date().getFullYear()
+      for (var i = 1; i <= 20; i++) {
+        anos.push(ano++)
+      }
+      return anos
+    }
+  },
+  methods: {
+    checkForm() {
+      this.erros = []
+      Object.entries(this.camposObrigatorios).forEach(([index, item]) => {
+        if (!this[index]) {
+          this.erros.push(item)
+        }
+      })
+    },
+    submitForm() {
+      this.checkForm()
+    },
+    pesquisarEstados() {
+      var headers = { method: "GET", mode: "cors" }
+      fetch(
+        "https://servicodados.ibge.gov.br/api/v1/localidades/estados",
+        headers
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          this.estados = data
+        })
+    },
+    pesquisarCidades() {
+      var myInit = { method: "GET", mode: "cors" }
+      fetch(
+        `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${this.estado}/distritos`,
+        myInit
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          this.cidades = data
+        })
+    }
+  },
+  created() {
+    this.pesquisarEstados()
   }
 }
 </script>
