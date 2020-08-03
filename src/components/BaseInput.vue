@@ -106,8 +106,8 @@ export default {
         content: "";
         position: absolute;
         left: 0;
-        top: 3px;
-        width: 17px;
+        top: 2px;
+        width: 16px;
         height: 16px;
         border: 1px solid $azul;
         background: #fff;
