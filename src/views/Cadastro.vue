@@ -216,6 +216,7 @@ export default {
     submitForm() {
       if (this.checkForm()) {
         let dados = { ...this._data }
+        dados.data_criacao = new Date().toISOString().substring(0, 10)
         delete dados.anos
         delete dados.meses
         delete dados.erros
