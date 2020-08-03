@@ -1,11 +1,23 @@
 import { mount } from "vue-test-utils"
+import { enableFetchMocks } from "jest-fetch-mock"
 import Cadastro from "../../src/views/Cadastro"
 import expect from "expect"
+enableFetchMocks()
 
 describe("Testando Cadastro", () => {
   let cadastro
 
   beforeEach(() => {
+    fetch.mockResponseOnce(
+      JSON.stringify([
+        {
+          id: 13,
+          sigla: "AM",
+          nome: "Amazonas",
+          regiao: { id: 1, sigla: "N", nome: "Norte" }
+        }
+      ])
+    )
     cadastro = mount(Cadastro)
   })
 
