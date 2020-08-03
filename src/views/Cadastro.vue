@@ -1,7 +1,16 @@
 <template>
   <div>
     <Header titulo="Cadastro"></Header>
-    <form class="container py-40" @submit.prevent="submitForm">
+    <form class="container py-40" id="form" @submit.prevent="submitForm">
+      <div v-if="erros.length" class="c-erros">
+        <p>Os campos abaixos são obrigatorios</p>
+        <ul>
+          <li v-for="erro in erros" :key="'erro-' + erro">{{ erro }}</li>
+        </ul>
+      </div>
+      <div v-if="sucesso" class="c-alerta">
+        Matrícula realizada com sucesso!
+      </div>
       <BaseInput v-model="nome" id="nome" name="nome" label="Nome"></BaseInput>
       <BaseInput
         v-model="email"
@@ -41,13 +50,6 @@
         </select>
       </BaseInput>
       <BaseInput
-        v-model="endereco"
-        id="endereco"
-        name="endereco"
-        label="Endereço"
-        placeholder="Rua, Número e Bairro"
-      ></BaseInput>
-      <BaseInput
         v-model="cep"
         id="cep"
         name="cep"
@@ -70,11 +72,23 @@
         </select>
       </BaseInput>
       <p class="color-azul mt-35"><strong>Forma de Pagamento</strong></p>
-      <hr />
-      <BaseInput>
-        <input type="radio" id="credito" name="pagamento" value="credito" />
+      <hr class="hr" />
+      <BaseInput class="mb-20">
+        <input
+          v-model="pagamento"
+          type="radio"
+          id="credito"
+          name="pagamento"
+          value="credito"
+        />
         <label for="credito">Cartão de Crédito</label>
-        <input type="radio" id="boleto" name="pagamento" value="boleto" />
+        <input
+          v-model="pagamento"
+          type="radio"
+          id="boleto"
+          name="pagamento"
+          value="boleto"
+        />
         <label for="boleto">Boleto Bancário</label>
       </BaseInput>
       <BaseInput
@@ -146,6 +160,7 @@ export default {
       mes_cartao: "",
       ano_cartao: "",
       cv: null,
+      sucesso: false,
       erros: [],
       estados: [],
       cidades: [],
@@ -156,8 +171,8 @@ export default {
         endereco: "Endereço",
         estado: "Estado",
         cep: "CEP",
-        cidade: "cidade",
-        pagamento: "Meio de pagamento",
+        cidade: "Cidade",
+        pagamento: "Forma de pagamento",
         nome_cartao: "Nome impresso no cartão",
         numero_cartao: "Numero impresso no cartão",
         mes_cartao: "Mes da validade do cartão",
@@ -207,10 +222,10 @@ export default {
         })
     },
     pesquisarCidades() {
-      var myInit = { method: "GET", mode: "cors" }
+      var headers = { method: "GET", mode: "cors" }
       fetch(
         `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${this.estado}/distritos`,
-        myInit
+        headers
       )
         .then((response) => response.json())
         .then((data) => {
@@ -223,3 +238,34 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import "@/assets/scss/_variaveis";
+.c-erros {
+  border-radius: 5px;
+  background-color: #ff5555;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  p {
+    font-weight: bold;
+    text-align: center;
+    margin: 5px;
+  }
+  ul {
+    list-style: none;
+  }
+}
+.c-alerta {
+  border-radius: 5px;
+  background-color: #059a25;
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-family: $font-nunito;
+}
+.hr {
+  margin-block-start: 0.5em;
+}
+</style>
