@@ -141,6 +141,7 @@ export default {
           margin: 0 20px;
           font-weight: bold;
           min-width: 80px;
+          cursor: pointer;
         }
         li.router-link-exact-active::before {
           content: "o";
