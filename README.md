@@ -1,29 +1,51 @@
-# front-tsa
+# Projeto de cadastro de listagem de clientes
 
-## Project setup
+## Detalhes
+
+
+### Frameworks
+
+ - Projeto desenvolvido totalmente em Vue.js
+ 
+### Dependências
+
+ - Pacotes instalados apenas para teste unitário
+ - Teste unitários realizados com Vue Test Utils e Jest
+ 
+### Componentes
+
+ - Código desenvolvido totalmente em português
+ - Conceito de TDD aplicado
+ - Metodologia BEM aplicada ao scss
+
+### Outros
+
+ - Não há consumo de serviço back-end para armazenamento de dados
+ - Armazenamento feito em localstorage
+ - Consumo de api para selects de estados e cidades
+
+
+## Configuração do projeto
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compila e recarrega a automaticamente para desenvolvimento
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compila e minimiza para produção
 ```
 npm run build
 ```
 
-### Run your unit tests
+### Execute seus testes de unidade
 ```
 npm run test:unit
 ```
 
-### Lints and fixes files
+### Arquivos de lint e correções
 ```
 npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+`
