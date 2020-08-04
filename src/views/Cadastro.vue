@@ -32,54 +32,60 @@
         label="CPF"
         placeholder="111.111.111-01"
       ></BaseInput>
-      <BaseInput
-        v-model="endereco"
-        id="endereco"
-        name="endereco"
-        label="Endereço"
-        placeholder="Rua, Número e Bairro"
-      ></BaseInput>
-      <BaseInput name="estado" label="Estado">
-        <select
-          v-model="estado"
-          name="estado"
-          id="estado"
-          @change="pesquisarCidades"
-        >
-          <option value="" disabled selected>Selecione o Estado</option>
-          <option
-            v-for="estado in estados"
-            :value="estado.sigla"
-            :key="'estado-' + estado.sigla"
+      <div class="row">
+        <BaseInput
+          v-model="endereco"
+          id="endereco"
+          name="endereco"
+          label="Endereço"
+          placeholder="Rua, Número e Bairro"
+          class="w-md-48"
+        ></BaseInput>
+        <BaseInput name="estado" label="Estado" class="w-md-48">
+          <select
+            v-model="estado"
+            name="estado"
+            id="estado"
+            @change="pesquisarCidades"
           >
-            {{ estado.nome }}
-          </option>
-        </select>
-      </BaseInput>
-      <BaseInput
-        v-model="cep"
-        v-mascara="'##.###-###'"
-        pattern=".{10,}"
-        id="cep"
-        name="cep"
-        label="CEP"
-        placeholder="22.222-000"
-      ></BaseInput>
-      <BaseInput name="cidade" label="Cidade">
-        <select
-          v-model="cidade"
-          :disabled="!cidades.length"
-          name="cidade"
-          id="cidade"
-        >
-          <option value="" selected disabled>Selecione a Cidade</option>
-          <template v-for="cidade in cidades">
-            <option :value="cidade.nome" :key="'cidade-' + cidade.id">
-              {{ cidade.nome }}
+            <option value="" disabled selected>Selecione o Estado</option>
+            <option
+              v-for="estado in estados"
+              :value="estado.sigla"
+              :key="'estado-' + estado.sigla"
+            >
+              {{ estado.nome }}
             </option>
-          </template>
-        </select>
-      </BaseInput>
+          </select>
+        </BaseInput>
+      </div>
+      <div class="row">
+        <BaseInput
+          v-model="cep"
+          v-mascara="'##.###-###'"
+          class="w-md-48"
+          pattern=".{10,}"
+          id="cep"
+          name="cep"
+          label="CEP"
+          placeholder="22.222-000"
+        ></BaseInput>
+        <BaseInput name="cidade" label="Cidade" class="w-md-48">
+          <select
+            v-model="cidade"
+            :disabled="!cidades.length"
+            name="cidade"
+            id="cidade"
+          >
+            <option value="" selected disabled>Selecione a Cidade</option>
+            <template v-for="cidade in cidades">
+              <option :value="cidade.nome" :key="'cidade-' + cidade.id">
+                {{ cidade.nome }}
+              </option>
+            </template>
+          </select>
+        </BaseInput>
+      </div>
       <p class="color-azul mt-35"><strong>Forma de Pagamento</strong></p>
       <hr class="hr" />
       <BaseInput class="mb-20">
@@ -100,48 +106,70 @@
         />
         <label for="boleto">Boleto Bancário</label>
       </BaseInput>
-      <BaseInput
-        v-model="nome_cartao"
-        id="nome_cartao"
-        name="nome_cartao"
-        label="Nome no Cartão"
-        placeholder="Nome impresso no cartão"
-      ></BaseInput>
-      <BaseInput
-        v-model="numero_cartao"
-        v-mascara="'#### #### #### ####'"
-        pattern=".{19,}"
-        id="numero_cartao"
-        name="numero_cartao"
-        label="Número no Cartão"
-        placeholder="5555 5555 5555 5555"
-      ></BaseInput>
-      <BaseInput label="Data de Expiração">
-        <select v-model="mes_cartao" name="mes_cartao" id="mes_cartao">
-          <option value="" selected disabled>Mês</option>
-          <option v-for="mes in meses" :value="mes" :key="'mes-' + mes">
-            {{ mes }}
-          </option>
-        </select>
-        <select v-model="ano_cartao" name="ano_cartao" id="ano_cartao">
-          <option value="" selected disabled>Ano</option>
-          <option v-for="ano in anos" :value="ano" :key="'ano-' + ano">
-            {{ ano }}
-          </option>
-        </select>
-      </BaseInput>
-      <BaseInput
-        v-model="cv"
-        v-mascara="'###'"
-        pattern=".{3,}"
-        id="cv"
-        name="cv"
-        label="Código de Segurança"
-        placeholder="XXX"
-      ></BaseInput>
+      <div class="row">
+        <BaseInput
+          v-model="nome_cartao"
+          class="w-md-48"
+          id="nome_cartao"
+          name="nome_cartao"
+          label="Nome no Cartão"
+          placeholder="Nome impresso no cartão"
+        ></BaseInput>
+        <BaseInput label="Data de Expiração" class="w-md-48">
+          <div class="row">
+            <select
+              v-model="mes_cartao"
+              class="w-md-48"
+              name="mes_cartao"
+              id="mes_cartao"
+            >
+              <option value="" selected disabled>Mês</option>
+              <option v-for="mes in meses" :value="mes" :key="'mes-' + mes">
+                {{ mes }}
+              </option>
+            </select>
+            <select
+              v-model="ano_cartao"
+              class="w-md-48"
+              name="ano_cartao"
+              id="ano_cartao"
+            >
+              <option value="" selected disabled>Ano</option>
+              <option v-for="ano in anos" :value="ano" :key="'ano-' + ano">
+                {{ ano }}
+              </option>
+            </select>
+          </div>
+        </BaseInput>
+      </div>
+      <div class="row">
+        <BaseInput
+          v-model="numero_cartao"
+          v-mascara="'#### #### #### ####'"
+          class="w-md-48"
+          pattern=".{19,}"
+          id="numero_cartao"
+          name="numero_cartao"
+          label="Número no Cartão"
+          placeholder="5555 5555 5555 5555"
+        ></BaseInput>
+        <BaseInput
+          v-model="cv"
+          v-mascara="'###'"
+          class="w-md-48"
+          pattern=".{3,}"
+          id="cv"
+          name="cv"
+          label="Código de Segurança"
+          placeholder="XXX"
+        ></BaseInput>
+      </div>
+
       <hr />
       <p class="color-cinza">Seu cartão será debitado em R$ 49,00</p>
-      <button class="btn" type="submit">REALIZAR MATRÍCULA</button>
+      <div class="w-100">
+        <button class="btn" type="submit">REALIZAR MATRÍCULA</button>
+      </div>
       <p class="color-cinza">
         <small>Informações seguras e criptografadas</small>
       </p>
