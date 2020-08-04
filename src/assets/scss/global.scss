@@ -64,6 +64,16 @@ body {
   margin-left: 0;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.w-100 {
+  width: 100%;  
+}
+
 .btn {
   cursor: pointer;
   border: none;
@@ -81,6 +91,7 @@ body {
 }
 
 hr {
+  width: 100%;
   height: 2.5px;
   background-color: #eff4f9;
   border: none;
@@ -99,6 +110,9 @@ hr {
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
+  }
+  .w-md-48 {
+    width: 48% !important;
   }
 }
 

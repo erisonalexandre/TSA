@@ -48,6 +48,7 @@ export default {
 <style lang="scss">
 @import "@/assets/scss/_variaveis";
 .c-baseInput {
+  width: 100%;
   label {
     display: inline-block;
     color: $cinza;
